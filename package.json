@@ -4,7 +4,7 @@
   "description": "multiplayer chess game ",
   "main": "build/main.js",
   "scripts": {
-    "build": "tsc",
+    "build": "concurrently \"tsc\" \"cd app && yarn build\"",
     "start": "concurrently \"node build/main.js\" \"cd app && yarn start\"",
     "dev": "node build/main.js"
   },
