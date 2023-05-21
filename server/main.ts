@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 
-const port: number = 5000 || process.env.PORT;
+const port = process.env.PORT || 5000;
 
 const app = express();
 app.use(cors());
@@ -12,6 +12,6 @@ app.get("/", (req, res) => {
 });
 
 // start the Express server
-app.listen(port, () => {
+app.listen(port , () => {
   console.log(`server started at http://localhost:${port}`);
 });
