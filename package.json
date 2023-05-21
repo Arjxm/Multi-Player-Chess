@@ -4,7 +4,7 @@
   "description": "multiplayer chess game ",
   "main": "dist/main.js",
   "scripts": {
-    "build": "yarn install && cd app && yarn install && yarn dist",
+    "build": "yarn install && cd app && yarn install && yarn build",
     "start": "node dist/main.js",
     "dev": "ts-node dist/main.ts"
   },
