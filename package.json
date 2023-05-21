@@ -2,11 +2,11 @@
   "name": "chessserver",
   "version": "1.0.0",
   "description": "multiplayer chess game ",
-  "main": "build/main.js",
+  "main": "dist/main.js",
   "scripts": {
-    "build": "yarn install && cd app && yarn install && yarn build",
-    "start": "concurrently \"node build/main.js\" \"cd app && yarn start\"",
-    "dev": "node build/main.js"
+    "build": "yarn install && cd app && yarn install && yarn dist",
+    "start": "node dist/main.js",
+    "dev": "ts-node dist/main.ts"
   },
   "repository": "https://github.com/Arjxm/Multi-Player-Chess.git",
   "author": "arjun <arjun232001@gmail.com>",
