@@ -4,6 +4,7 @@ import Input from '../../components/Input';
 import {RootState} from '../../utils/store';
 import { useSelector, useDispatch } from 'react-redux'
 import { setEmail, setPassCode } from '../../utils/slice/userSlice';
+import {Link} from "react-router-dom";
 
 const FormContainer = styled.div`
   display: flex;
@@ -36,6 +37,8 @@ const LoginPage = () => {
         <Input l = "Passcode" type = "password" onChange = {handlePassCodeChange}/>
         <Button onClick = {handleSubmit} btn = "Login"/>
       </form>
+
+      <Link to = '/signup'>sign up</Link>
     </FormContainer>
   );
 };
