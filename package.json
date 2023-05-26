@@ -6,7 +6,7 @@
   "scripts": {
     "build": "yarn install && cd app && yarn install && yarn build",
     "start": "node dist/main.js",
-    "dev": "ts-node dist/main.ts"
+    "dev": "tsc"
   },
   "repository": "https://github.com/Arjxm/Multi-Player-Chess.git",
   "author": "arjun <arjun232001@gmail.com>",
@@ -21,7 +21,10 @@
   "dependencies": {
     "concurrently": "^8.0.1",
     "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "mongodb": "^5.5.0",
+    "mongoose": "^7.2.1",
     "ts-node": "^10.9.1"
   }
 }
