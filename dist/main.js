@@ -13,6 +13,8 @@ import { Server } from "socket.io";
 import { createServer } from "http";
 import dbCon from "./utils/dbCon.js";
 import userModel from "./models/userModel.js";
+import { generateToken } from "./utils/generateToken.js";
+import { addUser, getUserInRoom } from "./helper/createRoom.js";
 const port = process.env.PORT || 5000;
 const app = express();
 const httpServer = createServer(app);
@@ -34,7 +36,17 @@ dbCon();
 //  socket.emit("hello", "world");
 //});
 io.on("connection", (socket) => {
-    socket.on("move", (m) => { socket.emit("mo", m); });
+    socket.on('join', ({ userName, room }) => {
+        const { user } = addUser({ id: socket.id, userName, room });
+        console.log(user);
+        socket.emit('message', { user: 'admin', text: `${user.userName} and ${user.room}` });
+        socket.broadcast.to(user.room).emit('message', { user: "admin", text: `${user.userName} is Joinned` });
+        socket.join(user.room);
+        io.to(user.room).emit('roomData', {
+            room: user.room,
+            users: getUserInRoom(user.room)
+        });
+    });
 });
 app.post("/api/auth/signup", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { email, userName, passCode } = req.body;
@@ -55,7 +67,9 @@ app.post("/api/auth/login", (req, res) => __awaiter(void 0, void 0, void 0, func
     const { email, passCode } = req.body;
     const response = yield userModel.findOne({ email });
     if ((response === null || response === void 0 ? void 0 : response.passCode) === passCode) {
-        res.status(200).json({ message: "Logged in" });
+        const token = generateToken(JSON.stringify(response === null || response === void 0 ? void 0 : response._id));
+        res.cookie("name", token);
+        res.status(200).json({ message: "Logged in", userName: response === null || response === void 0 ? void 0 : response.userName });
     }
     else {
         res.status(401).json({ message: "either passCode wrong or try to sign up first" });

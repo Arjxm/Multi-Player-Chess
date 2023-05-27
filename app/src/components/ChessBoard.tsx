@@ -4,7 +4,7 @@ import {socket} from '../utils/socket/socket';
 
 // Constants
 const BOARD_SIZE = 8;
-const SQUARE_SIZE = 60;
+const SQUARE_SIZE = 118;
 const CANVAS_SIZE = SQUARE_SIZE * BOARD_SIZE;
 
 const Chessboard: React.FC = () => {
@@ -189,7 +189,7 @@ const Chessboard: React.FC = () => {
     for (let row = 0; row < BOARD_SIZE; row++) {
       for (let col = 0; col < BOARD_SIZE; col++) {
         const isEvenSquare = (row + col) % 2 === 0;
-        const color = isEvenSquare ? 'white' : 'blue';
+        const color = isEvenSquare ? '#769656' : '#eeeed2';
         context.fillStyle = color;
         context.fillRect(col * SQUARE_SIZE, row * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE);
 
