@@ -1,3 +1,4 @@
+import {Link} from "react-router-dom";
 import styled from "styled-components";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
@@ -23,6 +24,7 @@ const SignUpPage = () => {
         <Input l="Passcode" type="password" />
         <Button onClick = {handleSubmit} btn = "SignUp" />
       </form>
+      <Link to = '/login'>log in</Link>
     </FormContainer>
   );
 };

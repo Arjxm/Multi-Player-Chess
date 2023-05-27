@@ -6,7 +6,8 @@
   "scripts": {
     "build": "yarn install && cd app && yarn install && yarn build",
     "start": "node dist/main.js",
-    "dev": "ts-node dist/main.ts"
+    "dev": "ts-node dist/main.ts",
+    "server": "tsc && node dist/main.js"
   },
   "repository": "https://github.com/Arjxm/Multi-Player-Chess.git",
   "author": "arjun <arjun232001@gmail.com>",
@@ -25,6 +26,7 @@
     "express": "^4.18.2",
     "mongodb": "^5.5.0",
     "mongoose": "^7.2.1",
+    "socket.io": "^4.6.1",
     "ts-node": "^10.9.1"
   }
 }

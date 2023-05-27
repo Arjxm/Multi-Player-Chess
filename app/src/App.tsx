@@ -5,18 +5,16 @@ import ChessBoard from "./components/ChessBoard";
 import LoginPage from "./pages/auth/LoginPage";
 import SignUpPage from "./pages/auth/SignUpPage";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {socket} from "./utils/socket/socket";
 
 
 function App() {
-  const [data, setData] = useState(null);
-
-  axios.get("http://localhost:5000/").then((res) => {
-    setData(res.data.message);
-  });
+   
   return(
   <BrowserRouter>
     <Routes>
-        <Route path = '/' element={<LoginPage/>}/>
+        <Route path='/' element = {<ChessBoard/>}/>
+        <Route path = 'login' element={<LoginPage/>}/>
         <Route path = 'signup' element={<SignUpPage/>}/>
     </Routes>
   </BrowserRouter>

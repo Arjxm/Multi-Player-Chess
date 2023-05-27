@@ -1,12 +1,24 @@
 import express from "express";
 import cors from "cors";
+import {Server} from "socket.io"; 
+import {createServer} from "http";
 import dbCon from "./utils/dbCon.js";
 import userModel from "./models/userModel.js";
+
 const port = process.env.PORT || 5000;
 
 const app = express();
+const httpServer = createServer(app);
 app.use(cors());
 app.use(express.json())
+
+
+//Socket.io
+const io = new Server(httpServer, {
+    cors:{
+        origin: "http://localhost:3000"
+    }
+});
 
 //DB connection 
 dbCon();
@@ -16,6 +28,13 @@ dbCon();
 //  res.status(200).json({message: "Hello"});
 // });
 
+//io.on("connection", (socket) => {
+//  socket.emit("hello", "world");
+//});
+
+io.on("connection", (socket) => {
+  socket.on("move", (m) => {socket.emit("mo", m)})
+});
 app.post("/api/auth/signup", async (req, res) => {
 
     const {email, userName, passCode} = req.body; 
@@ -48,6 +67,6 @@ app.post("/api/auth/login", async (req, res) => {
 })
 
 // start the Express server
-app.listen(port , () => {
+httpServer.listen(port , () => {
   console.log(`server started at http://localhost:${port}`);
 });
