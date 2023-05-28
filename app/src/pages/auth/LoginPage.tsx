@@ -7,6 +7,7 @@ import { setEmail, setOnline, setPassCode, setUserName } from '../../utils/slice
 import {Link} from "react-router-dom";
 import axios from 'axios';
 import {setPanel} from '../../utils/slice/appSlice';
+import {BASE_URL} from "../../utils/apiUrl";
 
 const FormContainer = styled.div`
   display: flex;
@@ -33,7 +34,7 @@ const LoginPage = () => {
   };
   const handleSubmit = async (event: any) => {
     event.preventDefault();
-        const res = await axios.post("http://localhost:5000/api/auth/login", {email: user.email, passCode: user.passCode} );
+        const res = await axios.post(`${BASE_URL}/api/auth/login`, {email: user.email, passCode: user.passCode} );
         if(res.status === 200){
            dispatch(setOnline(true))
            dispatch(setUserName(res.data.userName));

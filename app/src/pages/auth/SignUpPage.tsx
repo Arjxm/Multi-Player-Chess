@@ -12,6 +12,7 @@ import {
   setUserName,
 } from "../../utils/slice/userSlice";
 import { RootState } from "../../utils/store";
+import {BASE_URL} from "../../utils/apiUrl";
 
 const FormContainer = styled.div`
   display: flex;
@@ -42,7 +43,7 @@ const SignUpPage = () => {
   };
   const handleSubmit = async (event: any) => {
     event.preventDefault();
-    const res = await axios.post("http://localhost:5000/api/auth/signUp", {
+    const res = await axios.post(`${BASE_URL}/api/auth/signUp`, {
       email: user.email,
       passCode: user.passCode,
       userName: user.userName,
