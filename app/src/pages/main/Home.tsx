@@ -1,7 +1,9 @@
+import {useState} from "react";
 import { useSelector } from "react-redux";
 import { styled } from "styled-components";
 import Button from "../../components/Button";
 import Chessboard from "../../components/ChessBoard";
+import {socket} from "../../utils/socket/socket";
 import { RootState } from "../../utils/store";
 import LoginPage from "../auth/LoginPage";
 import SignUpPage from "../auth/SignUpPage";
@@ -26,11 +28,13 @@ const AuthPanel = () => {
 }
 
 const Home = () => {
+
   const user = useSelector((state: RootState) => state.user);
+
   return (
     <Main>
       <Wrapper>
-        <Chessboard />
+        <Chessboard/>
       </Wrapper>
       <Wrapper>
         {user.online ? (

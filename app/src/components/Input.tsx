@@ -19,12 +19,17 @@ const InputField = styled.input`
   border-radius: 4px;
   font-size: 16px;
 `;
-
-const Input = (props: any) => {
+interface inputType{
+    lable: string;
+    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    value: string;
+    type:string;
+}
+const Input:React.FC<inputType> = ({lable, onChange, value, type}) => {
   return (
     <InputContainer>
-      <InputLabel>{props.l}</InputLabel>
-      <InputField {...props} />
+      <InputLabel>{lable}</InputLabel>
+      <InputField onChange = {onChange} value = {value} type = {type}/>
     </InputContainer>
   );
 };

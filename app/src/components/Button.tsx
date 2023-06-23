@@ -15,9 +15,12 @@ const Btn = styled.button`
     background-color: #23527c;
   }
 `;
-
-const Button = (props: any) => {
-  return <Btn onClick={props.onClick}>{props.btn}</Btn>;
+interface btnData{
+    onClick: (event: React.FormEvent) => void; 
+    btn: string;
+}
+const Button: React.FC<btnData> = ({onClick, btn}) => {
+  return <Btn onClick={onClick}>{btn}</Btn>;
 };
 
 export default Button;
